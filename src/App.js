@@ -1,30 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
-import getGifs from './services/getGifs';
+import ListOfGifs from './components/ListOfGifs';
 
 function App() {
-  // el usestate devuelve un arreglo de dos posiciones
-  const [gifs, setGifs] = useState([])
-  
-useEffect(function () {
-  getGifs({keyword: 'rick'}).then(gifs => setGifs(gifs))
-  }, [])
-
   return (
     <div className="App">
       <section className="App-content">
-        {
-          gifs.map(singleGif => {
-            return <div>
-              <h4>{singleGif.tittle}</h4>
-              <small>{singleGif.id}</small>
-              <img scr={singleGif.url} />
-            </div>
-          })         
-        }
+        <ListOfGifs keyword={'programming'} />
       </section >
     </div>
-  );
+  )
 }
 
 export default App;
