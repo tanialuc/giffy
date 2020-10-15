@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import getGifs from './services/getGifs';
 
 function App() {
+  // el usestate devuelve un arreglo de dos posiciones
+  const [gifs, setGifs] = useState([])
+  
+useEffect(function () {
+  getGifs({keyword: 'rick'}).then(gifs => setGifs(gifs))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="App-content">
+        {
+          gifs.map(singleGif => {
+            return <div>
+              <h4>{singleGif.tittle}</h4>
+              <small>{singleGif.id}</small>
+              <img scr={singleGif.url} />
+            </div>
+          })         
+        }
+      </section >
     </div>
   );
 }
