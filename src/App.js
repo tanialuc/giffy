@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import ListOfGifs from './components/ListOfGifs';
+import './components/Gif.css'
 
 function App() {
   return (
